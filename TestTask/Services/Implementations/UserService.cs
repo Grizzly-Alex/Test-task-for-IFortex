@@ -16,7 +16,7 @@ namespace TestTask.Services.Implementations
         }
 
         ///<returns>
-        /// Return the user with the maximum total amount of items delivered in 2003 or null
+        /// Return the user with the maximum total amount of items delivered in 2003 or null.
         /// </returns>
         public async Task<User?> GetUser()
         {
@@ -27,7 +27,7 @@ namespace TestTask.Services.Implementations
         }
 
         ///<returns>
-        /// Return collection of users who have paid orders in 2010 or an empty collection
+        /// Return collection of users who have paid orders in 2010 or an empty collection.
         /// </returns>
         public async Task<List<User>> GetUsers()
         {

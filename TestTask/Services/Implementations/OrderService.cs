@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestTask.Data;
+using TestTask.Enums;
 using TestTask.Models;
 using TestTask.Services.Interfaces;
 
@@ -15,7 +16,7 @@ namespace TestTask.Services.Implementations
         }
 
         ///<returns>
-        /// Return the most new order that contains more than one item or null
+        /// Return the most new order that contains more than one item or null.
         /// </returns>
         public async Task<Order?> GetOrder()
         {
@@ -23,9 +24,14 @@ namespace TestTask.Services.Implementations
                 .FirstOrDefaultAsync(order => order.Quantity > 1);
         }
 
-        public Task<List<Order>> GetOrders()
+        ///<returns>
+        /// Return collection of orders from active users, sorted by creation date or an empty collection.
+        /// </returns>
+        public async Task<List<Order>> GetOrders()
         {
-            throw new NotImplementedException();
+            return await _context.Orders.Where(order => order.User.Status == UserStatus.Active)
+                .OrderBy(order => order.CreatedAt)
+                .ToListAsync();
         }
     }
 }
